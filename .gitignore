@@ -1,0 +1,8 @@
+node_modules/
+temp/
+platforms/
+plugins/
+*.DS_Store
+*.log
+*.swp
+.sass-cache

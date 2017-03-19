@@ -3,9 +3,7 @@ import { Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { TabsPage } from '../pages/tabs/tabs';
-import { HomePage } from '../pages/home/home';
-import { LoginPage } from '../pages/login/login';
-import { Auth } from '@ionic/cloud-angular';
+
 // Continue here with tutorial https://www.raymondcamden.com/2016/11/04/an-example-of-the-ionic-auth-service-with-ionic-2
 
 
@@ -22,11 +20,6 @@ export class MyApp {
       StatusBar.styleDefault();
       Splashscreen.hide();
 
-      if(this.auth.isAuthenticated()) {
-        this.rootPage = HomePage;
-      } else {
-        this.rootPage = LoginPage;
-      }
     });
   }
 }

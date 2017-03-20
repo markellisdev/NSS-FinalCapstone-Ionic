@@ -6,6 +6,8 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 
+import { HttpRestNotes } from '../providers/http-rest-notes'
+
 @NgModule({
   declarations: [
     MyApp,
@@ -25,6 +27,6 @@ import { TabsPage } from '../pages/tabs/tabs';
     HomePage,
     TabsPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [HttpRestNotes, {provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
 export class AppModule {}

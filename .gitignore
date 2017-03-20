@@ -6,3 +6,4 @@ plugins/
 *.log
 *.swp
 .sass-cache
+config_secret.json

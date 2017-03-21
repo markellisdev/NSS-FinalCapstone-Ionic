@@ -13,7 +13,9 @@ import { LocalJson } from '../../providers/local-json';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  notes: RestNote[]
+  errorMessage: string;
+  notes: RestNote[];
+  mode = 'Observable';
   // data: YelpSearch[]
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private restnotes: HttpRestNotes, private localjson: LocalJson) {
@@ -25,6 +27,13 @@ export class HomePage {
       .searchRestNotes('Indian').subscribe(notes => {
        console.log("notes inside search: ", notes);
     })
+  }
+  addNote(name: string) {
+    if (!name) { return; }
+    this.restnotes.create(name)
+                     .subscribe(
+                       note  => this.notes.push(note),
+                       error =>  this.errorMessage = <any>error);
   }
 
 

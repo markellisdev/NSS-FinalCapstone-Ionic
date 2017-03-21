@@ -9,9 +9,13 @@
 
 <ion-content padding>
   <h2>Restaurant Notes for __!</h2>
-
   <!-- This adds a searchbar - input captures user input-->
   <ion-searchbar (input)="search($event)"></ion-searchbar>
+
+  <label>New hero name: <input #newRestNote /></label>
+  <button (click)="addNote(newRestNote.value); newRestNote.value=''">Add Note</button>
+
+  <a routerLink="/Service/Sign_in"><button class="btn btn-success pull-right" > Add Customer</button></a>
 
   <!-- This creates the list of restaurant notes -->
   <ion-list>

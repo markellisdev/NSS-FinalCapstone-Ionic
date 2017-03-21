@@ -43,7 +43,7 @@ export class HttpRestNotes {
     //Search for restaurant notes
   // takes in search parameter which is then passed to api url
   searchRestNotes(searchParam: string): Observable<RestNote[]> {
-    return this.http.get(`${this.restaurantNotesApiUrl}/search/notes?q=${searchParam}`)
+    return this.http.get(`${this.restaurantNotesApiUrl}/restaurant_notes/?q=${searchParam}`)
       .map(res => <RestNote[]>(res.json().items))
   }
   // addNote(name: string) {
@@ -54,11 +54,12 @@ export class HttpRestNotes {
   //                    error =>  this.errorMessage = <any>error);
   // }
 
-  create(name: string): Observable<RestNote> {
+  create(title: string): Observable<RestNote> {
+    console.log("chicken in http-rest-notes", title);
   let headers = new Headers({ 'Content-Type': 'application/json' });
   let options = new RequestOptions({ headers: headers });
 
-  return this.http.post(this.restaurantNotesApiUrl, { name }, options)
+  return this.http.post(`${this.restaurantNotesApiUrl}/restaurant_notes/`, { title }, options)
                   .map(res => <RestNote[]>res.json())
                   .catch(this.handleError);
   }

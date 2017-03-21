@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
+import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
 import { RestNote } from '../models/rest-note';
@@ -21,8 +22,48 @@ export class HttpRestNotes {
   // Load all restaurant notes
   load(): Observable<RestNote[]> {
     return this.http.get(`${this.restaurantNotesApiUrl}/restaurant_notes`)
-    .map(res => <RestNote[]>res.json());
+    .map(res => <RestNote[]>res.json())
+    .catch(this.handleError);
   }
+
+  private handleError (error: Response | any) {
+    // In a real world app, you might use a remote logging infrastructure
+    let errMsg: string;
+    if (error instanceof Response) {
+      const body = error.json() || '';
+      const err = body.error || JSON.stringify(body);
+      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+    } else {
+      errMsg = error.message ? error.message : error.toString();
+    }
+    console.error(errMsg);
+    return Observable.throw(errMsg);
+  }
+
+    //Search for restaurant notes
+  // takes in search parameter which is then passed to api url
+  searchRestNotes(searchParam: string): Observable<RestNote[]> {
+    return this.http.get(`${this.restaurantNotesApiUrl}/restaurant_notes/?q=${searchParam}`)
+      .map(res => <RestNote[]>(res.json().items))
+  }
+  // addNote(name: string) {
+  // if (!name) { return; }
+  // this.restnotes.create(name)
+  //                  .subscribe(
+  //                    hero  => this.heroes.push(hero),
+  //                    error =>  this.errorMessage = <any>error);
+  // }
+
+  create(title: string): Observable<RestNote> {
+    console.log("chicken in http-rest-notes", title);
+  let headers = new Headers({ 'Content-Type': 'application/json' });
+  let options = new RequestOptions({ headers: headers });
+
+  return this.http.post(`${this.restaurantNotesApiUrl}/restaurant_notes/`, { title }, options)
+                  .map(res => <RestNote[]>res.json())
+                  .catch(this.handleError);
+  }
+
 
 }
 

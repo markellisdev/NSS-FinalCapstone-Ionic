@@ -5,8 +5,11 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+import { NoteDetailsPage } from '../pages/note-details/note-details';
 
-import { HttpRestNotes } from '../providers/http-rest-notes'
+import { HttpRestNotes } from '../providers/http-rest-notes';
+// import { YelpSearch } from '../providers/yelp-api';
+import { LocalJson } from '../providers/local-json';
 
 @NgModule({
   declarations: [
@@ -14,6 +17,7 @@ import { HttpRestNotes } from '../providers/http-rest-notes'
     AboutPage,
     ContactPage,
     HomePage,
+    NoteDetailsPage,
     TabsPage
   ],
   imports: [
@@ -25,8 +29,9 @@ import { HttpRestNotes } from '../providers/http-rest-notes'
     AboutPage,
     ContactPage,
     HomePage,
+    NoteDetailsPage,
     TabsPage
   ],
-  providers: [HttpRestNotes, {provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [HttpRestNotes, LocalJson, {provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
 export class AppModule {}

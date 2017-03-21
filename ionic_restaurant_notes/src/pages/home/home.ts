@@ -8,7 +8,7 @@ import { HttpRestNotes } from '../../providers/http-rest-notes';
 // import { YelpSearch } from '../../providers/yelp-api';
 import { LocalJson } from '../../providers/local-json';
 
-import { AboutPage } from '../about/about';
+import { NoteDetailsPage } from '../note-details/note-details';
 
 @Component({
   selector: 'page-home',
@@ -39,7 +39,7 @@ export class HomePage {
                      .subscribe(
                        note  => this.notes.push(note),
                        error =>  this.errorMessage = <any>error);
-    this.navCtrl.push(AboutPage);
+    this.navCtrl.push(NoteDetailsPage);
   }
   search(searchEvent) {
     let term = searchEvent.target.value

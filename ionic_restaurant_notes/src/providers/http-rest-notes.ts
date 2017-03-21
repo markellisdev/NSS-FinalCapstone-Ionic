@@ -23,6 +23,12 @@ export class HttpRestNotes {
     return this.http.get(`${this.restaurantNotesApiUrl}/restaurant_notes`)
     .map(res => <RestNote[]>res.json());
   }
+    //Search for restaurant notes
+  // takes in search parameter which is then passed to api url
+  searchRestNotes(searchParam: string): Observable<RestNote[]> {
+    return this.http.get(`${this.restaurantNotesApiUrl}/search/notes?q=${searchParam}`)
+      .map(res => <RestNote[]>(res.json().items))
+  }
 
 }
 

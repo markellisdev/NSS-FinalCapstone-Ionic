@@ -1,0 +1,42 @@
+<!--
+  Generated template for the NoteDetails page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>NoteDetails</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <h3>Note Details view page</h3>
+  <ion-list>
+    <ion-item>
+      <ion-label>Followers</ion-label>
+      <ion-badge item-right>{{note?.followers}}</ion-badge>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-item>
+      <ion-label>Following</ion-label>
+      <ion-badge item-right>{{note?.following}}</ion-badge>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-item>
+      <ion-label>Repos</ion-label>
+      <ion-badge item-right>{{note?.public_repos}}</ion-badge>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-item>
+      <ion-label>Gists</ion-label>
+      <ion-badge item-right>{{note?.public_gists}}</ion-badge>
+    </ion-item>
+  </ion-list>
+</ion-content>

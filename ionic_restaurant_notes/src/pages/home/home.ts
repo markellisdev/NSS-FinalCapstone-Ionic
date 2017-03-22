@@ -32,10 +32,10 @@ export class HomePage {
        console.log("notes inside search: ", notes);
     })
   }
-  addNote(name: string) {
+  addNote(name: string, note_text, restaurant_id, favorite_dish) {
     console.log("name is", name);
     if (!name) { return; }
-    this.restnotes.create(name)
+    this.restnotes.create(name, note_text, restaurant_id, favorite_dish)
                      .subscribe(
                        note  => this.notes.push(note),
                        error =>  this.errorMessage = <any>error);

@@ -40,8 +40,9 @@ export class HttpRestNotes {
     return Observable.throw(errMsg);
   }
 
-    //Search for restaurant notes
+  //Search for restaurant notes
   // takes in search parameter which is then passed to api url
+  // ----- currently not working -----------
   searchRestNotes(searchParam: string): Observable<RestNote[]> {
     return this.http.get(`${this.restaurantNotesApiUrl}/restaurant_notes/?q=${searchParam}`)
       .map(res => <RestNote[]>(res.json().items))
@@ -54,18 +55,47 @@ export class HttpRestNotes {
   //                    error =>  this.errorMessage = <any>error);
   // }
 
-  create(title: string): Observable<RestNote> {
+  // This is used to create new Restaurant Note
+  create(title: string, note_text:string, restaurant_id:string, favorite_dish:string): Observable<RestNote> {
     console.log("chicken in http-rest-notes", title);
   let headers = new Headers({ 'Content-Type': 'application/json' });
   let options = new RequestOptions({ headers: headers });
 
-  return this.http.post(`${this.restaurantNotesApiUrl}/restaurant_notes/`, { title }, options)
+  return this.http.post(`${this.restaurantNotesApiUrl}/restaurant_notes/`, { title, note_text, restaurant_id, favorite_dish }, options)
                   .map(res => <RestNote[]>res.json())
                   .catch(this.handleError);
   }
 
+  // This is used to update an existing Restaurant Note
+  update(title, note_text, restaurant_id, favorite_dish): Observable<RestNote[]> {
+    console.log("Inside the update function", title);
+    let body = "key=update&title=" + title + "&note-text=" + note_text + "restaurant_id=" + restaurant_id + "favorite_dish=" + favorite_dish;
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let url = `${this.restaurantNotesApiUrl}/restaurant_notes/`;
 
-}
+  return this.http.post(`${this.restaurantNotesApiUrl}/restaurant_notes/`, { body })
+                  .map(res => <RestNote[]>res.json())
+                  .catch(this.handleError);
+    // .subscribe((data) =>
+    // {
+    //   //If the request is succesful, notify the user
+    //   if(data.status === 200)
+    //   {
+    //     this.sendNotification('Congratulations, your note has been saved!');
+    //   }
+    //   // If unsuccessful, post this response.
+    //   else
+    //   {
+    //     this.sendNotification('Something went wrong!');
+    //   }
+    // });
+  }
+
+  //This is used to get a note
+//   getNote(id, title, note_text, restaurant_id, favorite_dish): Observable<RestNote>
+
+
+// }
 
 
 
@@ -93,4 +123,4 @@ export class HttpRestNotes {
 //     return this.http.get(`${this.githubApiUrl}/search/users?q=${searchParam}`)
 //       .map(res => <User[]>(res.json().items))
 //   }
-// }
+}

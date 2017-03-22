@@ -14,8 +14,7 @@
 
 
 <ion-content padding>
-  <h3>Note Details view page</h3>
-  <ion-list>
+<!--   <ion-list>
     <ion-item>
       <ion-label>Followers</ion-label>
       <ion-badge item-right>{{note?.followers}}</ion-badge>
@@ -38,5 +37,38 @@
       <ion-label>Gists</ion-label>
       <ion-badge item-right>{{note?.public_gists}}</ion-badge>
     </ion-item>
-  </ion-list>
+  </ion-list> -->
+
+  <form [formGroup]="form" (ngSubmit)="saveNote(form.value)">
+     <ion-list>
+        <ion-item margin-bottom>
+           <ion-label>Restaurant Name</ion-label>
+           <ion-input type="text" formControlName="title"></ion-input>
+        </ion-item>
+
+        <ion-item margin-bottom>
+           <ion-label>Notes</ion-label>
+           <ion-input type="text" formControlName="note_text"></ion-input>
+        </ion-item>
+
+        <ion-item margin-bottom>
+           <ion-label>Restaurant URL</ion-label>
+           <ion-textarea formControlName="restaurant_id"></ion-textarea>
+        </ion-item>
+
+        <ion-item margin-bottom>
+           <ion-label>Favorite Dish</ion-label>
+           <ion-textarea formControlName="favorite_dish"></ion-textarea>
+        </ion-item>
+
+        <ion-item margin-bottom>
+           <button ion-button color="favorite_dish"
+              text-center
+              block
+              [disabled]="!form.valid">Save your note</button>
+        </ion-item>
+
+     </ion-list>
+  </form>
+
 </ion-content>

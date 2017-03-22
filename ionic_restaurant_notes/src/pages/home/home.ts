@@ -8,7 +8,7 @@ import { HttpRestNotes } from '../../providers/http-rest-notes';
 // import { YelpSearch } from '../../providers/yelp-api';
 import { LocalJson } from '../../providers/local-json';
 
-import { AboutPage } from '../about/about';
+import { NoteDetailsPage } from '../note-details/note-details';
 
 @Component({
   selector: 'page-home',
@@ -32,14 +32,14 @@ export class HomePage {
        console.log("notes inside search: ", notes);
     })
   }
-  addNote(name: string) {
+  addNote(name: string, note_text, restaurant_id, favorite_dish) {
     console.log("name is", name);
     if (!name) { return; }
-    this.restnotes.create(name)
+    this.restnotes.create(name, note_text, restaurant_id, favorite_dish)
                      .subscribe(
                        note  => this.notes.push(note),
                        error =>  this.errorMessage = <any>error);
-    this.navCtrl.push(AboutPage);
+    this.navCtrl.push(NoteDetailsPage);
   }
   search(searchEvent) {
     let term = searchEvent.target.value

@@ -11,6 +11,9 @@ import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
+// from scotch.io angular-2-http-requests-with-observables tut
+import { EmitterService } from '../../emitter.service';
+
 /*
   Generated class for the NoteDetails page.
 
@@ -36,15 +39,6 @@ export class NoteDetailsPage {
     })
   }
 
-  // saveNote()
-  // {
-  //   this.note.title = this.form.controls["title"].value;
-  //   this.note.note_text = this.form.controls["note_text"].value;
-  //   this.note.restaurant_id = this.form.controls["restaurant_is"].value;
-  //   this.note.favorite_dish = this.form.controls["favorite_dish"].value;
-  //   console.log("Inside saveNote, this is the notes title", this.note.title);
-  //   update(this.note.title, this.note.note_text, this.note.restaurant_id, this.note.favorite_dish);
-  // }
   // ---------------------------------------------------
 
   private handleError (error: Response | any) {
@@ -75,112 +69,17 @@ export class NoteDetailsPage {
       .subscribe(
          note  => this.notes.push(note));
 
+    this.navCtrl.pop(NoteDetailsPage);
 
   }
 
-  //   addNote(name: string) {
-  //   console.log("name is", name);
-  //   if (!name) { return; }
-  //   this.restNotes.create(name)
-  //                    .subscribe(
-  //                      note  => this.notes.push(note),
-  //                      error =>  this.errorMessage = <any>error);
-  //   this.navCtrl.push(NoteDetailsPage);
-  // }
-
-  //   addNote(name: string) {
-  //   console.log("name is", name);
-  //   if (!name) { return; }
-  //   this.restnotes.create(name)
-  //                    .subscribe(
-  //                      note  => this.notes.push(note),
-  //                      error =>  this.errorMessage = <any>error);
-  //   this.navCtrl.push(NoteDetailsPage);
+  // editNote() {
+  //   // Emit edit event
+  //   EmitterService.get(this.editId).emit(this.note)
   // }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad NoteDetailsPage');
   }
 
-
-// CONTINUE_WORK HERE!!!!!------------------------
-
-  // saveNote(name: string) {
-  //   console.log(
-  //     "title is: ", title,
-
-  //     );
-  //   if (!name) { return; }
-  //   this.restnotes.create(name)
-  //                    .subscribe(
-  //                      note  => this.notes.push(note),
-  //                      error =>  this.errorMessage = <any>error);
-  //   this.navCtrl.push(HomePage);
-  // }
-// -------------------------------------------------------
-
-
-  // ionViewWillLoad() {
-
-  //   this.restaurantNoteForm = new FormGroup({
-  //     username: new FormControl('', Validators.compose([
-  //       Validators.maxLength(25),
-  //       Validators.minLength(5),
-  //       Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),
-  //       Validators.required
-  //     ])),
-  //     name: new FormControl('', Validators.required),
-  //     lastname: new FormControl('', Validators.required),
-  //     email: new FormControl('', Validators.compose([
-  //       Validators.required,
-  //       Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
-  //     ])),
-  //     phone: new FormControl('', Validators.compose([
-  //       Validators.pattern('^\\d+$'),
-  //       Validators.required
-  //     ])),
-  //     gender: new FormControl('male', Validators.required),
-  //     password: new FormControl('', Validators.compose([
-  //       Validators.minLength(5),
-  //       Validators.required,
-  //       Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
-  //     ])),
-  //     confirmPassword: new FormControl('', Validators.required),
-  //     agree: new FormControl(false, Validators.required)
-  //   });
-
-  //   this.sampleForm.valueChanges
-  //     .debounceTime(400)
-  //     .subscribe(data => this.onValueChanged(data));
-  // }
-
-
-
-
-
 }
-
-
-
-
-
-// @Component({
-//   selector: 'page-user-details',
-//   templateUrl: 'user-details.html'
-// })
-// export class UserDetailsPage {
-//     user: User;
-//     login: string;
-
-//   constructor(public navCtrl: NavController, public navParams: NavParams, private githubUsers: GithubUsers) {
-//     this.login = navParams.get('login');
-//     githubUsers.loadDetails(this.login).subscribe(user => {
-//       this.user = user;
-//     })
-//   }
-
-//   ionViewDidLoad() {
-//     console.log('Hello UserDetails Page');
-//   }
-
-// }

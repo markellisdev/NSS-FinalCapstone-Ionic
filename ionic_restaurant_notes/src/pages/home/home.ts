@@ -32,10 +32,10 @@ export class HomePage {
        console.log("notes inside search: ", notes);
     })
   }
-  addNote(name: string, note_text, restaurant_id, favorite_dish) {
+  addNote(name: string, note_text, restaurant_id, favorite_dish, id) {
     console.log("name is", name);
     if (!name) { return; }
-    this.restnotes.create(name, note_text, restaurant_id, favorite_dish)
+    this.restnotes.create(name, note_text, restaurant_id, favorite_dish, id)
                      .subscribe(
                        note  => this.notes.push(note),
                        error =>  this.errorMessage = <any>error);
@@ -43,18 +43,11 @@ export class HomePage {
   }
 
   editNote(note){
+    console.log("is note available in edit? ", note);
     if (!note) { return; }
-    // this.restnotes.create(title, note_text, restaurant_id, favorite_dish)
-    //                  .subscribe(
-    //                    note  => this.notes.push(note),
-    //                    error =>  this.errorMessage = <any>error);
-    this.navCtrl.push(NoteDetailsPage, {
-      id: note.id,
-      title: note.title,
-      note_text: note.note_text,
-      restaurant_id: note.restaurant_id,
-      favorite_dish: note.favorite_dish
-    });
+    // This is how the note is pushed to the next page, via NavParams, learned from the following-----
+    // https://www.joshmorony.com/passing-data-between-pages-in-ionic-2/
+    this.navCtrl.push(NoteDetailsPage, note);
   }
 
   goToDetails() {

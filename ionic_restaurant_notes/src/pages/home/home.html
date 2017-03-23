@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content padding>
-  <h2>Restaurant Notes for __!</h2>
+<!--   <h2>Restaurant Notes for __!</h2> -->
   <!-- This adds a searchbar - input captures user input-->
   <ion-searchbar (input)="search($event)"></ion-searchbar>
   <div align=center>
@@ -23,12 +23,17 @@
       <ion-item>
         <ion-icon name="restaurant" item-left></ion-icon>
         <h2>{{ note.title }}</h2>
+        <h3>Notes: {{note.note_text}}</h3>
       </ion-item>
     <!-- </button> -->
     <ion-item-options>
     <button ion-button color="primary" icon-left (click)="editNote(note)">
       <ion-icon name="ios-create"></ion-icon>
       Edit
+    </button>
+    <button ion-button color="secondary" icon-left (click)="deleteNote(note)">
+      <ion-icon name="ios-globe"></ion-icon>
+      GoTo
     </button>
     <button ion-button color="danger" icon-left (click)="deleteNote(note)">
       <ion-icon name="ios-trash"></ion-icon>
@@ -60,21 +65,3 @@
   </ion-item-sliding>
 </ion-list> -->
 
-
-
-
-<!-- <ion-content padding>
-  <h3>Users view page</h3> -->
-
-  <!-- This adds a searchbar - input captures user input-->
-<!--   <ion-searchbar (input)="search($event)"></ion-searchbar>
-  <ion-list>
-    <button ion-item *ngFor="let user of users" (click)="goToDetails(user.login)">
-      <ion-avatar item-left>
-        <img [src]="user.avatar_url">
-      </ion-avatar>
-      <h2>{{ user.login }}</h2>
-      <ion-icon name="arrow-forward" item-right></ion-icon>
-    </button>
-  </ion-list>
-</ion-content> -->

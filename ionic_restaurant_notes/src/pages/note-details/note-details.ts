@@ -32,10 +32,11 @@ export class NoteDetailsPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, private restNotes: HttpRestNotes, private restaurantNoteForm: FormBuilder)
   {
     this.form = restaurantNoteForm.group({
-      'title': ['', Validators.required],
-      'note_text': ['', Validators.minLength(10)],
-      'restaurant_id': ['', Validators.minLength(10)],
-      'favorite_dish': ['', Validators.minLength(6)]
+      'id': [this.navParams.get('id')],
+      'title': [this.navParams.get('title'), Validators.required],
+      'note_text': [this.navParams.get('note_text'), Validators.minLength(10)],
+      'restaurant_id': [this.navParams.get('restaurant_id'), Validators.minLength(10)],
+      'favorite_dish': [this.navParams.get('favorite_dish'), Validators.minLength(6)]
     })
   }
 
@@ -65,7 +66,7 @@ export class NoteDetailsPage {
     let options = new RequestOptions({ headers: headers });
     let url = `${this.restaurantNotesApiUrl}/restaurant_notes/`;
 
-    this.restNotes.create(fullNote.title, fullNote.note_text, fullNote.restaurant_id, fullNote.favorite_dish)
+    this.restNotes.create(fullNote.title, fullNote.note_text, fullNote.restaurant_id, fullNote.favorite_dish, fullNote.id)
       .subscribe(
          note  => this.notes.push(note));
 

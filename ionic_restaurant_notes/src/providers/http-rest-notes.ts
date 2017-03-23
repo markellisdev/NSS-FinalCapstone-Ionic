@@ -57,7 +57,7 @@ export class HttpRestNotes {
   // }
 
   // This is used to create new Restaurant Note
-  create(title: string, note_text:string, restaurant_id:string, favorite_dish:string): Observable<RestNote> {
+  create(title: string, note_text:string, restaurant_id:string, favorite_dish:string, id: string): Observable<RestNote> {
     console.log("chicken in http-rest-notes", title);
   let headers = new Headers({ 'Content-Type': 'application/json' });
   let options = new RequestOptions({ headers: headers });

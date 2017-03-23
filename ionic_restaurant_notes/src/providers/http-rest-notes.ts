@@ -15,6 +15,7 @@ import { RestNote } from '../models/rest-note';
 @Injectable()
 export class HttpRestNotes {
   restaurantNotesApiUrl = 'http://localhost:8000'
+    notes: RestNote[] = [];
 
   constructor(public http: Http) {
     console.log('Hello HttpRestNotes Provider');
@@ -66,16 +67,24 @@ export class HttpRestNotes {
                   .catch(this.handleError);
   }
 
+  removeNote(id: string): Observable<RestNote[]> {
+    console.log("id in remove note", id, `${this.restaurantNotesApiUrl}/deleteNote/${id}`);
+    return this.http.get(`${this.restaurantNotesApiUrl}/deleteNote/${id}`)
+    .map(res => <RestNote[]>res.json())
+    .catch(this.handleError);
+  }
+
   // This is used to update an existing Restaurant Note
   update(title, note_text, restaurant_id, favorite_dish): Observable<RestNote[]> {
     console.log("Inside the update function", title);
     let body = "key=update&title=" + title + "&note-text=" + note_text + "restaurant_id=" + restaurant_id + "favorite_dish=" + favorite_dish;
     let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
     let url = `${this.restaurantNotesApiUrl}/restaurant_notes/`;
 
-  return this.http.post(`${this.restaurantNotesApiUrl}/restaurant_notes/`, { body })
+  return this.http.post(`${this.restaurantNotesApiUrl}/restaurant_notes/${body['id']}`, { body, options })
                   .map(res => <RestNote[]>res.json())
-                  .catch(this.handleError);
+                  .catch((error:any) => Observable.throw(error.json().error || 'Server error'))
     // .subscribe((data) =>
     // {
     //   //If the request is succesful, notify the user
@@ -90,12 +99,6 @@ export class HttpRestNotes {
     //   }
     // });
   }
-
-  //This is used to get a note
-//   getNote(id, title, note_text, restaurant_id, favorite_dish): Observable<RestNote>
-
-
-// }
 
 
 

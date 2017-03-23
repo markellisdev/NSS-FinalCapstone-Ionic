@@ -11,21 +11,54 @@
   <h2>Restaurant Notes for __!</h2>
   <!-- This adds a searchbar - input captures user input-->
   <ion-searchbar (input)="search($event)"></ion-searchbar>
-
-  <label>Restaurant name: <input #newRestNote /></label>
-  <button (click)="addNote(newRestNote.value); newRestNote.value=''">Add Note</button>
-
+  <div align=center>
+    <button ion-button round (click)="goToDetails()">Add Restaurant Note</button>
+  </div>
 <!--   <a routerLink="/Service/Sign_in"><button class="btn btn-success pull-right" > Add Customer</button></a> -->
 
   <!-- This creates the list of restaurant notes -->
   <ion-list>
-    <button ion-item *ngFor="let note of notes">
-      <ion-icon name="restaurant" item-left></ion-icon>
-      <h2>{{ note.title }}</h2>
+    <ion-item-sliding *ngFor="let note of notes">
+    <!-- <button ion-item *ngFor="let note of notes" (click)="goToDetails(note.id)"> -->
+      <ion-item>
+        <ion-icon name="restaurant" item-left></ion-icon>
+        <h2>{{ note.title }}</h2>
+      </ion-item>
+    <!-- </button> -->
+    <ion-item-options>
+    <button ion-button color="primary" icon-left (click)="editNote(note)">
+      <ion-icon name="ios-create"></ion-icon>
+      Edit
     </button>
+    <button ion-button color="danger" icon-left (click)="deleteNote(note)">
+      <ion-icon name="ios-trash"></ion-icon>
+      Delete
+    </button>
+    </ion-item-options>
+  </ion-item-sliding>
   </ion-list>
 </ion-content>
 
+<!--   <ion-list-header>My Restaurant List</ion-list-header>
+  <ion-item-sliding *ngFor="let contact of contactList | async">
+    <ion-item>
+      <ion-icon name="book" danger item-left></ion-icon>
+      <h2>{{contact.name}}</h2>
+      <h3>Address: {{contact.address}}, {{contact.city}}</h3>
+      <p>Phone: {{contact.phone}}</p>
+    </ion-item>
+    <ion-item-options>
+      <button ion-button color="primary" icon-left (click)="editContact(contact)">
+        <ion-icon name="ios-create"></ion-icon>
+        Edit
+      </button>
+      <button ion-button color="danger" icon-left (click)="deleteContact(contact)">
+        <ion-icon name="ios-trash"></ion-icon>
+        Delete
+      </button>
+    </ion-item-options>
+  </ion-item-sliding>
+</ion-list> -->
 
 
 

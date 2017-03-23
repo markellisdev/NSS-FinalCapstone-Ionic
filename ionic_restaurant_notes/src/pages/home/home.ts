@@ -41,6 +41,39 @@ export class HomePage {
                        error =>  this.errorMessage = <any>error);
     this.navCtrl.push(NoteDetailsPage);
   }
+
+  editNote(note){
+    if (!note) { return; }
+    // this.restnotes.create(title, note_text, restaurant_id, favorite_dish)
+    //                  .subscribe(
+    //                    note  => this.notes.push(note),
+    //                    error =>  this.errorMessage = <any>error);
+    this.navCtrl.push(NoteDetailsPage, {
+      id: note.id,
+      title: note.title,
+      note_text: note.note_text,
+      restaurant_id: note.restaurant_id,
+      favorite_dish: note.favorite_dish
+    });
+  }
+
+  goToDetails() {
+  this.navCtrl.push(NoteDetailsPage);
+  }
+
+  deleteNote(note) {
+    console.log("delete note", note.id);
+    this.restnotes.removeNote(note.id).subscribe(data => {
+      console.log("notes in delete", data, this.notes)
+      for (let deletenote in this.notes) {
+        console.log("note", this.notes[deletenote].id, note.id)
+        if (note.id == this.notes[deletenote].id) {
+          this.notes.splice(+deletenote, 1)
+        }
+      }
+  });
+  }
+
   search(searchEvent) {
     let term = searchEvent.target.value
     // We will only perform the search if we have 3 or more characters

@@ -18,7 +18,7 @@
 
   <!-- This creates the list of restaurant notes -->
   <ion-list>
-    <ion-item-sliding *ngFor="let note of notes">
+    <ion-item-sliding  #item *ngFor="let note of notes">
     <!-- <button ion-item *ngFor="let note of notes" (click)="goToDetails(note.id)"> -->
       <ion-item>
         <ion-icon name="restaurant" item-left></ion-icon>
@@ -27,7 +27,7 @@
       </ion-item>
     <!-- </button> -->
     <ion-item-options>
-    <button ion-button color="primary" icon-left (click)="editNote(note)">
+    <button ion-button color="primary" icon-left (click)="editNote(note, item)">
       <ion-icon name="ios-create"></ion-icon>
       Edit
     </button>

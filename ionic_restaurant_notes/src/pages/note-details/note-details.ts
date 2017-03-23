@@ -4,6 +4,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { Validators, FormControl, FormGroup, FormBuilder} from '@angular/forms'
 
 import { RestNote } from '../../models/rest-note';
+import { HomePage } from '../../home/home';
 
 import { HttpRestNotes } from '../../providers/http-rest-notes';
 
@@ -65,22 +66,32 @@ export class NoteDetailsPage {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     let url = `${this.restaurantNotesApiUrl}/restaurant_notes/`;
-
+    if (fullNote.id === null) {
     this.restNotes.create(fullNote.title, fullNote.note_text, fullNote.restaurant_id, fullNote.favorite_dish, fullNote.id)
       .subscribe(
          note  => this.notes.push(note));
 
     this.navCtrl.pop(NoteDetailsPage);
-
+    }
+    else {
+      console.log("inside else" );
+      this.restNotes.update(fullNote.title, fullNote.note_text, fullNote.restaurant_id, fullNote.favorite_dish, fullNote.id)
+        .subscribe(
+            data => console.log("data is in savenote", data));
+    this.navCtrl.pop(NoteDetailsPage);
+    }
   }
-
+// this.notes.push(data))
   // editNote() {
   //   // Emit edit event
   //   EmitterService.get(this.editId).emit(this.note)
   // }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad NoteDetailsPage');
+  ionViewWillLeave(HomePage) {
+    console.log('ionViewWillLeave HomePage');
+    HomePage.reloadMe()
   }
+
+
 
 }

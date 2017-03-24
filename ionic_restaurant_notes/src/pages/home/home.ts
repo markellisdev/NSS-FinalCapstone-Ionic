@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
-
-import { NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, ItemSliding, List } from 'ionic-angular';
 
 import { RestNote } from '../../models/rest-note';
 
@@ -19,7 +18,7 @@ export class HomePage {
   notes: RestNote[];
   originalNotes: RestNote[];
   mode = 'Observable';
-  // data: YelpSearch[]
+  @ViewChild(List) list:List;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private restnotes: HttpRestNotes, private localjson: LocalJson) {
     restnotes.load().subscribe(notes => {
@@ -32,29 +31,25 @@ export class HomePage {
        console.log("notes inside search: ", notes);
     })
   }
-  addNote(name: string, note_text, restaurant_id, favorite_dish) {
+
+  addNote(name: string, note_text, restaurant_id, favorite_dish, id) {
     console.log("name is", name);
     if (!name) { return; }
-    this.restnotes.create(name, note_text, restaurant_id, favorite_dish)
+    this.restnotes.create(name, note_text, restaurant_id, favorite_dish, id)
                      .subscribe(
                        note  => this.notes.push(note),
                        error =>  this.errorMessage = <any>error);
     this.navCtrl.push(NoteDetailsPage);
   }
 
-  editNote(note){
+  editNote(note, item){
+    console.log("is note available in edit? ", note);
     if (!note) { return; }
-    // this.restnotes.create(title, note_text, restaurant_id, favorite_dish)
-    //                  .subscribe(
-    //                    note  => this.notes.push(note),
-    //                    error =>  this.errorMessage = <any>error);
-    this.navCtrl.push(NoteDetailsPage, {
-      id: note.id,
-      title: note.title,
-      note_text: note.note_text,
-      restaurant_id: note.restaurant_id,
-      favorite_dish: note.favorite_dish
-    });
+    // This is how the note is pushed to the next page, via NavParams, learned from the following-----
+    // https://www.joshmorony.com/passing-data-between-pages-in-ionic-2/
+
+    this.navCtrl.push(NoteDetailsPage, note);
+    item.close();
   }
 
   goToDetails() {
@@ -88,5 +83,8 @@ export class HomePage {
     }
   }
 
+  reloadMe() {
+    location.reload()
+  }
 
 }

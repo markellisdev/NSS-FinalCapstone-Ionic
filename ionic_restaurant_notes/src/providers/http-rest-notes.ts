@@ -57,7 +57,7 @@ export class HttpRestNotes {
   // }
 
   // This is used to create new Restaurant Note
-  create(title: string, note_text:string, restaurant_id:string, favorite_dish:string): Observable<RestNote> {
+  create(title: string, note_text:string, restaurant_id:string, favorite_dish:string, id: string): Observable<RestNote> {
     console.log("chicken in http-rest-notes", title);
   let headers = new Headers({ 'Content-Type': 'application/json' });
   let options = new RequestOptions({ headers: headers });
@@ -75,16 +75,18 @@ export class HttpRestNotes {
   }
 
   // This is used to update an existing Restaurant Note
-  update(title, note_text, restaurant_id, favorite_dish): Observable<RestNote[]> {
-    console.log("Inside the update function", title);
-    let body = "key=update&title=" + title + "&note-text=" + note_text + "restaurant_id=" + restaurant_id + "favorite_dish=" + favorite_dish;
+  update(title: string, note_text:string, restaurant_id:string, favorite_dish:string, id): Observable<RestNote[]> {
+    console.log("Inside the update function", id);
+    let body = "key=update&title=" + title + "&note-text=" + note_text + "restaurant_id=" + restaurant_id + "favorite_dish=" + favorite_dish + "id=" + id;
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     let url = `${this.restaurantNotesApiUrl}/restaurant_notes/`;
 
-  return this.http.post(`${this.restaurantNotesApiUrl}/restaurant_notes/${body['id']}`, { body, options })
+    console.log("body id correct? ", id);
+
+  return this.http.put(`${this.restaurantNotesApiUrl}/restaurant_notes/${id}/`, { title, note_text, restaurant_id, favorite_dish, id }, options)
                   .map(res => <RestNote[]>res.json())
-                  .catch((error:any) => Observable.throw(error.json().error || 'Server error'))
+                  // .catch((error:any) => Observable.throw(error.json().error || 'Server error'))
     // .subscribe((data) =>
     // {
     //   //If the request is succesful, notify the user
@@ -100,30 +102,4 @@ export class HttpRestNotes {
     // });
   }
 
-
-
-// @Injectable()
-// export class GithubUsers {
-//     // githubApiUrl = 'https://api.github.com';
-//     githubApiUrl = 'http://localhost:8000/';
-
-//   constructor(public http: Http) {
-//     console.log('Hello GithubUsers Provider');
-//   }
-//     // Load all github users
-//   load(): Observable<User[]> {
-//     return this.http.get(`${this.githubApiUrl}/users`)
-//       .map(res => <User[]>res.json());
-//   }
-//   // Get github user by providing login(username)
-//   loadDetails(login: string): Observable<User> {
-//     return this.http.get(`${this.githubApiUrl}/users/${login}`)
-//       .map(res => <User>(res.json()))
-//   }
-//   //Search for github users
-//   // takes in search parameter which is then passed to api url
-//   searchUsers(searchParam: string): Observable<User[]> {
-//     return this.http.get(`${this.githubApiUrl}/search/users?q=${searchParam}`)
-//       .map(res => <User[]>(res.json().items))
-//   }
 }

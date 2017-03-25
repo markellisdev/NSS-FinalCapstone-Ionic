@@ -10,7 +10,7 @@
 <ion-content padding>
 <!--   <h2>Restaurant Notes for __!</h2> -->
   <!-- This adds a searchbar - input captures user input-->
-  <ion-searchbar (input)="search($event)"></ion-searchbar>
+<!--   <ion-searchbar (input)="search($event)"></ion-searchbar> -->
   <div align=center>
     <button ion-button round (click)="goToDetails()">Add Restaurant Note</button>
   </div>
@@ -31,10 +31,10 @@
       <ion-icon name="ios-create"></ion-icon>
       Edit
     </button>
-    <button ion-button color="secondary" icon-left (click)="deleteNote(note)">
+<!--     <button ion-button color="secondary" icon-left (click)="deleteNote(note)">
       <ion-icon name="ios-globe"></ion-icon>
       GoTo
-    </button>
+    </button> -->
     <button ion-button color="danger" icon-left (click)="deleteNote(note)">
       <ion-icon name="ios-trash"></ion-icon>
       Delete

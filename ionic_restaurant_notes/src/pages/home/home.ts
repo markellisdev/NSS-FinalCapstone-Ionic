@@ -84,6 +84,7 @@ export class HomePage {
   }
 
   reloadMe() {
+    console.log("Is this actually reloading the page inside reloadMe function");
     location.reload()
   }
 

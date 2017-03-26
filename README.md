@@ -12,4 +12,4 @@ Thanks for checking it out!
 
 #### - markellisdev
 
-![Alt Text](https://github.com/markellisdev/NSS-FinalCapstone-Ionic/ionic_restaurant_notes/src/assets/images/RestNote_Homepage 2017-03-25 at 1.18.13 PM.png)
+![Alt Text](https://github.com/markellisdev/NSS-FinalCapstone-Ionic/blob/master/ionic_restaurant_notes/src/assets/images/RestNote_Homepage 2017-03-25 at 1.18.13 PM.png)

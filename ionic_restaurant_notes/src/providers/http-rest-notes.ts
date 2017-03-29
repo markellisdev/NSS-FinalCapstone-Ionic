@@ -43,18 +43,11 @@ export class HttpRestNotes {
 
   //Search for restaurant notes
   // takes in search parameter which is then passed to api url
-  // ----- currently not working -----------
+  // ----- currently not working 2017Mar29 -----------
   searchRestNotes(searchParam: string): Observable<RestNote[]> {
     return this.http.get(`${this.restaurantNotesApiUrl}/restaurant_notes/?q=${searchParam}`)
       .map(res => <RestNote[]>(res.json().items))
   }
-  // addNote(name: string) {
-  // if (!name) { return; }
-  // this.restnotes.create(name)
-  //                  .subscribe(
-  //                    hero  => this.heroes.push(hero),
-  //                    error =>  this.errorMessage = <any>error);
-  // }
 
   // This is used to create new Restaurant Note
   create(title: string, note_text:string, restaurant_id:string, favorite_dish:string, id: string): Observable<RestNote> {
@@ -67,6 +60,7 @@ export class HttpRestNotes {
                   .catch(this.handleError);
   }
 
+  // Used to remove an existing restaurant note
   removeNote(id: string): Observable<RestNote[]> {
     console.log("id in remove note", id, `${this.restaurantNotesApiUrl}/deleteNote/${id}`);
     return this.http.get(`${this.restaurantNotesApiUrl}/deleteNote/${id}`)
@@ -86,20 +80,6 @@ export class HttpRestNotes {
 
   return this.http.put(`${this.restaurantNotesApiUrl}/restaurant_notes/${id}/`, { title, note_text, restaurant_id, favorite_dish, id }, options)
                   .map(res => <RestNote[]>res.json())
-                  // .catch((error:any) => Observable.throw(error.json().error || 'Server error'))
-    // .subscribe((data) =>
-    // {
-    //   //If the request is succesful, notify the user
-    //   if(data.status === 200)
-    //   {
-    //     this.sendNotification('Congratulations, your note has been saved!');
-    //   }
-    //   // If unsuccessful, post this response.
-    //   else
-    //   {
-    //     this.sendNotification('Something went wrong!');
-    //   }
-    // });
   }
 
 }

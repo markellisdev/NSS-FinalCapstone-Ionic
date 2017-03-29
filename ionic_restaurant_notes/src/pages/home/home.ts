@@ -82,7 +82,7 @@ export class HomePage {
       });
     }
   }
-
+  // This function does not seem to be working correctly yet. Needs work 2017Mar29
   reloadMe() {
     console.log("Is this actually reloading the page inside reloadMe function");
     location.reload()

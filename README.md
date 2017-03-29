@@ -2,6 +2,8 @@
 
 This is the Ionic 2 portion of my final Capstone project for NSS.
 
+You can find the repository to build your api here, [NSS-FinalCapstone-RestaurantNotes](https://github.com/markellisdev/NSS-FinalCapstone-RestaurantNotes)
+
 The idea for this came about from notes I've collected while traveling for the past 25 years. For many cities I visited, I'd open the "Notes" app on my iPhone (or sometimes a paper notebook I was carrying) and write a stream of consciousness entry so that I could remember details about the experience, location of the place, or any other details.
 
 Unfortunately this didn't make for an easily searchable list, or a very organized one, so I've always wished there was an app for it. After attending Nashville Software School and learning some of the technologies and techniques I might use to build that sort of app, I decided to build my own, "Restaurant Notes".
@@ -12,4 +14,7 @@ Thanks for checking it out!
 
 #### - markellisdev
 
-![Alt Text](./ionic_restaurant_notes/src/assets/images/RestNote_Homepage%202017-03-25%20at%201.18.13%20PM.png)
+![Ionic Screenshot](./ionic_restaurant_notes/src/assets/images/RestNote_Homepage%202017-03-25%20at%201.18.13%20PM.png)
+
+![Ionic gif](./ionic_restaurant_notes/src/assets/images/RestNotes.gif)
+

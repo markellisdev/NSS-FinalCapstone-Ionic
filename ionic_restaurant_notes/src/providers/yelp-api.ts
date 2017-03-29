@@ -1,3 +1,5 @@
+// Was unable to get Yelps API functionality working within my app. May look into other possibilities, like Google or FourSquare
+
 // import { Injectable } from '@angular/core';
 // import { Http } from '@angular/http';
 // import { Observable } from 'rxjs/Rx';
@@ -38,7 +40,7 @@
 
 
 
-
+// Possible model code to retrieve API info
 //     // Load all github users
 //   load(): Observable<User[]> {
 //     return this.http.get(`${this.yelpApiUrl}/users`)

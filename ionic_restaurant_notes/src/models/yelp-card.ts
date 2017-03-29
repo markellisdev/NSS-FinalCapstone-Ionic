@@ -1,5 +1,4 @@
-// restaurant notes based on structure of djangoREST api
-// https://api.github.com/users/
+// This will eventually create a model for Yelp fields
 export interface YelpCard {
   url: string;
   title: string;

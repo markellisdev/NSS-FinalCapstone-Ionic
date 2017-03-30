@@ -43,11 +43,18 @@ export class HttpRestNotes {
 
   //Search for restaurant notes
   // takes in search parameter which is then passed to api url
-  // ----- currently not working 2017Mar29 -----------
+  // ----- currently not working 2017Mar30 -----------
   searchRestNotes(searchParam: string): Observable<RestNote[]> {
-    return this.http.get(`${this.restaurantNotesApiUrl}/restaurant_notes/?q=${searchParam}`)
+    return this.http.get(`${this.restaurantNotesApiUrl}/restaurant_notes`)
       .map(res => <RestNote[]>(res.json().items))
+      .filter(data => data.title.toLowerCase() === searchParam.toLowerCase())
   }
+ // Possibility to filter notes, although I think above will be better
+ //  filterNotes(searchParam: string) {
+ //    return this.notes.filter((note)) => {
+ //      return note.title.toLowerCase().indexOf(searchParam.toLowerCase()) > -1
+ //    }
+ //  }
 
   // This is used to create new Restaurant Note
   create(title: string, note_text:string, restaurant_id:string, favorite_dish:string, id: string): Observable<RestNote> {

@@ -47,7 +47,7 @@ export class HttpRestNotes {
   searchRestNotes(searchParam: string): Observable<RestNote[]> {
     return this.http.get(`${this.restaurantNotesApiUrl}/restaurant_notes`)
       .map(res => <RestNote[]>(res.json().items))
-      .filter(data => data.title.toLowerCase() === searchParam.toLowerCase())
+      .filter(data => data[0].title.toLowerCase() === searchParam.toLowerCase())
   }
  // Possibility to filter notes, although I think above will be better
  //  filterNotes(searchParam: string) {

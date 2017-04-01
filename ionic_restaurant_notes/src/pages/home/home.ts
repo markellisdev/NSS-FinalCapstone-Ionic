@@ -79,9 +79,10 @@ export class HomePage {
     } else {
       console.log("else in search = ", this.notes[0]);
 // Getting the correct object back here, but not sure how to get the filter working 2017Apr1 5:06pm Need to work on function below
-      // return this.notes.filter(data => {
-      //   data[0].toLowerCase() === term.toLowerCase()
-      // }, console.log("Are notes lower case? ", this.notes))
+// Closer using this example      https://angular-2-training-book.rangle.io/handout/observables/observables_array_operations.html
+      return this.notes.filter((notedata) => {
+        notedata.title.toLowerCase() === term.toLowerCase()
+      }, console.log("Are notes lower case? ", this.notes))
 
       // Get the searched notes from github
       // this.restnotes.searchRestNotes(term).subscribe(notes => {console.log("Searched notes are: ", notes );

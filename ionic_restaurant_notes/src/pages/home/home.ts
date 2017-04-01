@@ -22,7 +22,7 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private restnotes: HttpRestNotes, private localjson: LocalJson) {
     restnotes.load().subscribe(notes => {
-      console.log("Notes are :", notes);
+      // console.log("Notes are :", notes);
       this.notes = notes['results'];
       this.originalNotes = notes['results'];
     })
@@ -69,6 +69,7 @@ export class HomePage {
   });
   }
 
+// 2017Apr1- This is not actually working at all, like I first thought :-(
   search(searchEvent) {
     let term = searchEvent.target.value
     // We will only perform the search if we have 3 or more characters
@@ -76,12 +77,18 @@ export class HomePage {
       // Load cached users
       this.notes = this.originalNotes;
     } else {
+      console.log("else in search = ", this.notes[0]);
+// Getting the correct object back here, but not sure how to get the filter working 2017Apr1 5:06pm Need to work on function below
+      // return this.notes.filter(data => {
+      //   data[0].toLowerCase() === term.toLowerCase()
+      // }, console.log("Are notes lower case? ", this.notes))
+
       // Get the searched notes from github
-      this.restnotes.searchRestNotes(term).subscribe(notes => {console.log("Notes is ", notes );
+      // this.restnotes.searchRestNotes(term).subscribe(notes => {console.log("Searched notes are: ", notes );
         // this.notes = notes
-      });
+      };
     }
-  }
+
   // This function does not seem to be working correctly yet. Needs work 2017Mar29
   reloadMe() {
     console.log("Is this actually reloading the page inside reloadMe function");

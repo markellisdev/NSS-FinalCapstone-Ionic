@@ -43,11 +43,11 @@ export class HttpRestNotes {
 
   //Search for restaurant notes
   // takes in search parameter which is then passed to api url
-  // ----- currently not working 2017Mar30 -----------
+  // ----- currently not working 2017Mar30 ----------- 12:12pm getting this error "Cannot read property '0' of undefined"
   searchRestNotes(searchParam: string): Observable<RestNote[]> {
     return this.http.get(`${this.restaurantNotesApiUrl}/restaurant_notes`)
-      .map(res => <RestNote[]>(res.json().items))
-      .filter(data => data[0].title.toLowerCase() === searchParam.toLowerCase())
+    .map(res => <RestNote[]>(res.json().items))
+      // .filter(data => data[0].toLowerCase() === searchParam.toLowerCase(), console.log("data inside search", this.notes));
   }
  // Possibility to filter notes, although I think above will be better
  //  filterNotes(searchParam: string) {

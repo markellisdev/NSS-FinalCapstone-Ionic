@@ -78,11 +78,12 @@ export class HomePage {
       this.notes = this.originalNotes;
     } else {
       console.log("else in search = ", this.notes[0]);
-// Getting the correct object back here, but not sure how to get the filter working 2017Apr1 5:06pm Need to work on function below
+// Getting the correct object back here, but not sure how to get the filter working 2017Apr1 6:54pm Need to work on function below
 // Closer using this example      https://angular-2-training-book.rangle.io/handout/observables/observables_array_operations.html
-      return this.notes.filter((notedata) => {
-        notedata.title.toLowerCase() === term.toLowerCase(), console.log("Are notes lower case? ", notedata)
-      })
+      return this.notes
+        .filter((notedata) => {
+          notedata.title.toLowerCase() === term.toLowerCase(), console.log("Are notes lower case? ", notedata.id)
+      })//So, getting the right info. How do I get it to the page? .subscribe didn't seem to work. 8:05am 2017Apr5
 
       // Get the searched notes from github
       // this.restnotes.searchRestNotes(term).subscribe(notes => {console.log("Searched notes are: ", notes );

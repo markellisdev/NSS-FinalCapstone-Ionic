@@ -89,6 +89,7 @@ export class HomePage {
       // this.restnotes.searchRestNotes(term).subscribe(notes => {console.log("Searched notes are: ", notes );
         // this.notes = notes
       };
+      console.log("Am I getting back this.notes filtered? ", this.notes);//Maybe make variable to hold searched notes? 8:45am 2017Apr5
     }
 
   // This function does not seem to be working correctly yet. Needs work 2017Mar29

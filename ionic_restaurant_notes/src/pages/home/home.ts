@@ -83,7 +83,7 @@ export class HomePage {
       return this.notes
         .filter((notedata) => {
           notedata.title.toLowerCase() === term.toLowerCase(), console.log("Are notes lower case? ", notedata.id, term)
-      })//So, getting all the right info. How do I get it to the page? .subscribe didn't seem to work. 8:11am 2017Apr5
+      })//So, getting all the right info. How do I get it to the page? .subscribe didn't seem to work. 8:11am 2017Apr5 - On second thought, getting every note, not just the one that matches comparison.
 
       // Get the searched notes from github
       // this.restnotes.searchRestNotes(term).subscribe(notes => {console.log("Searched notes are: ", notes );

@@ -69,7 +69,6 @@ export class HomePage {
   });
   }
 
-// 2017Apr1- This is not actually working at all, like I first thought :-(
   search(searchEvent) {
     let term = searchEvent.target.value
     // We will only perform the search if we have 3 or more characters
@@ -78,23 +77,16 @@ export class HomePage {
       this.notes = this.originalNotes;
     } else {
       console.log("else in search = ", this.notes[0]);
-// Getting the correct object back here, but not sure how to get the filter working 2017Apr1 6:54pm Need to work on function below
 // Closer using this example      https://angular-2-training-book.rangle.io/handout/observables/observables_array_operations.html
-      this.originalNotes = this.notes;
-      this.notes =
-        this.notes
-          .filter((notedata) => {
-            notedata.title.toLowerCase() === term.toLowerCase(), console.log("Are notes lower case? ", notedata.id, term)
+        this.restnotes.load().subscribe((data) => {
+          this.originalNotes = this.notes;
+          this.notes =
+            this.notes
+              .filter((notedata) => {
+                 console.log("Are notes lower case? ", notedata.id, term, notedata.title.toLowerCase(), "is equal to? ", term.toLowerCase());
+                 return notedata.title.toLowerCase().match(term.toLowerCase()); //.match to see if a pattern exists ----> found here https://toddmotto.com/understanding-regular-expression-matching-with-test-match-exec-search-and-split/
+              })
         })
-
-      // this.notes
-      //   .filter((notedata) => {
-      //     notedata.title.toLowerCase() === term.toLowerCase() = this.notes, console.log("Are notes lower case? ", notedata.id, term)
-      // })//So, getting all the right info. How do I get it to the page? .subscribe didn't seem to work. 8:11am 2017Apr5 - On second thought, getting every note, not just the one that matches comparison.
-
-      // Get the searched notes from github
-      // this.restnotes.searchRestNotes(term).subscribe(notes => {console.log("Searched notes are: ", notes );
-        // this.notes = notes
 
       };
       console.log("Am I getting back this.notes filtered? ", this.notes);//Maybe make variable to hold searched notes? 8:45am 2017Apr5

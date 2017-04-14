@@ -26,10 +26,6 @@ export class HomePage {
       this.notes = notes['results'];
       this.originalNotes = notes['results'];
     })
-    // restnotes
-    //   .searchRestNotes('Coffee').subscribe(notes => {
-    //    console.log("notes inside search: ", notes);
-    // })
   }
 
   addNote(name: string, note_text, restaurant_id, favorite_dish, id) {
@@ -73,7 +69,6 @@ export class HomePage {
     let term = searchEvent.target.value
     // We will only perform the search if we have 3 or more characters
     if (term.trim() === '' || term.trim().length < 3) {
-      // Load cached users
       this.notes = this.originalNotes;
     } else {
       console.log("else in search = ", this.notes[0]);
@@ -87,9 +82,7 @@ export class HomePage {
                  return notedata.title.toLowerCase().match(term.toLowerCase()); //.match to see if a pattern exists ----> found here https://toddmotto.com/understanding-regular-expression-matching-with-test-match-exec-search-and-split/
               })
         })
-
       };
-      console.log("Am I getting back this.notes filtered? ", this.notes);//Maybe make variable to hold searched notes? 8:45am 2017Apr5
     }
 
   // This function does not seem to be working correctly yet. Needs work 2017Mar29

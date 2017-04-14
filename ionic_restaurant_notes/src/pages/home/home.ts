@@ -22,13 +22,9 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private restnotes: HttpRestNotes, private localjson: LocalJson) {
     restnotes.load().subscribe(notes => {
-      console.log("Notes are :", notes);
+      // console.log("Notes are :", notes);
       this.notes = notes['results'];
       this.originalNotes = notes['results'];
-    })
-    restnotes
-      .searchRestNotes('Coffee').subscribe(notes => {
-       console.log("notes inside search: ", notes);
     })
   }
 
@@ -73,15 +69,22 @@ export class HomePage {
     let term = searchEvent.target.value
     // We will only perform the search if we have 3 or more characters
     if (term.trim() === '' || term.trim().length < 3) {
-      // Load cached users
       this.notes = this.originalNotes;
     } else {
-      // Get the searched notes from github
-      this.restnotes.searchRestNotes(term).subscribe(notes => {console.log("Notes is ", notes );
-        // this.notes = notes
-      });
+      console.log("else in search = ", this.notes[0]);
+// Closer using this example      https://angular-2-training-book.rangle.io/handout/observables/observables_array_operations.html
+        this.restnotes.load().subscribe((data) => {
+          this.originalNotes = this.notes;
+          this.notes =
+            this.notes
+              .filter((notedata) => {
+                 console.log("Are notes lower case? ", notedata.id, term, notedata.title.toLowerCase(), "is equal to? ", term.toLowerCase());
+                 return notedata.title.toLowerCase().match(term.toLowerCase()); //.match to see if a pattern exists ----> found here https://toddmotto.com/understanding-regular-expression-matching-with-test-match-exec-search-and-split/
+              })
+        })
+      };
     }
-  }
+
   // This function does not seem to be working correctly yet. Needs work 2017Mar29
   reloadMe() {
     console.log("Is this actually reloading the page inside reloadMe function");
